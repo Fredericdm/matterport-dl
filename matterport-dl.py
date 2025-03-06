@@ -32,6 +32,24 @@ from tqdm import tqdm
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import decimal
 
+# 1) Install Pillow if missing
+try:
+    from PIL import Image
+except ImportError:
+    print("Pillow not found. Installing Pillow...")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "pillow"])
+    from PIL import Image
+
+# 2) Install cffi if missing
+try:
+    import cffi
+except ImportError:
+    print("cffi not found. Installing cffi...")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "cffi"])
+    import cffi
+
+# 3) Install py3
+
 if sys.platform == "win32":
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
